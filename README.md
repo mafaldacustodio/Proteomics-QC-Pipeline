@@ -18,7 +18,7 @@ After cloning, configure your pipeline by editing the configuration file.
 
 ## Configuration
 
-Edit the config file (YAML format) with the appropriate paths and options:
+Edit the **config.yml** file with the appropriate paths and options:
 
 ```yaml
 # Path to the root directory of the pipeline
@@ -61,6 +61,20 @@ batch_correction: False
 # Metadata column indicating the batch factor
 batch_effect_column: "plate"
 ```
+
+### Add files
+
+Place the following files in the specified directories:
+
+- **Raw data files** 
+  ```bash
+  pipeline/data_input/raw/
+  ```
+- **FASTA file**
+  ```bash
+  pipeline/data_input/
+  ```
+
 
 
 ---
