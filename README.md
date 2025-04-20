@@ -6,7 +6,7 @@ This **Snakemake** pipeline allows proteomics researchers to **quantify large-co
 
 ## Installation
 
-Clone the repository with submodules:
+Clone the repository into your server's directory:
 
 ```bash
 git clone --recursive git@github.com:......git
@@ -117,4 +117,105 @@ The pipeline generates:
 
 ---
 
+## Overview
+
+This pipeline provides an automated solution for **quantitative proteomics analysis** based on **Data-Independent Acquisition (DIA) mass spectrometry**. The workflow is designed to handle large cohorts and generate both **individual** and **summary quality control reports**, facilitating reproducibility, standardization, and informed decision-making.
+
+
+<img width="848" alt="Screenshot 2025-04-20 at 21 30 15" src="https://github.com/user-attachments/assets/b0bc5efe-4f48-4738-87e5-2d450beba3fe" />
+
+
+
+The process begins with two main inputs:
+- A **FASTA file** containing the reference protein sequence database.
+- **Raw DIA-MS files**, which are converted into the open-format `.mzML` files using a raw file converter (MSConvert).
+
+These inputs are then used in **DIA-NN**, which performs:
+1. **Spectral library generation**, based on the FASTA file.
+2. **Quantification**, where the spectral library and `.mzML` files are used to identify and quantify peptides and proteins.
+
+Once quantification is complete, the pipeline proceeds to the **Quality Control (QC)** step.
+
+The QC step generates two types of reports:
+- An **Individual report** for detailed insights of each workflow.
+- A **Summary report** providing a summary of all workflows.
+
+Following QC evaluation, users are given two options:
+- **Batch Correction**: If batch effects are identified, users can correct the batch effects by updating the configuration file.
+- **Sample Removal**: If outlier samples are detected, users can remove them by adding their sample identifiers to the configuration file.
+
+If no corrections or removals are needed, the workflow is finalized.
+
+---
+
+## Features
+
+**Preprocessing**
+   - Log 2 transformation
+   - Removal of contaminants
+   - Imputation
+   - Normalization
+   - Filtering
+
+**Sample Distribution Plot**
+   - Displays the intensity distribution of all samples
+   - Highlights potential outliers
+
+**Missing Values Heatmap**
+   - Visualizes missing data across proteins and samples
+
+**Missing Values Per Group**
+   - Compares the amount of missing data per group
+
+**Missing Proteins Distribution by Group**
+   - Shows how missing protein counts vary across experimental groups
+
+**Sample Correlation Heatmap**
+   - Correlation matrix between samples based on protein intensities (Pearson Correlation)
+
+**Hierarchical Clustering Dendrogram**
+   - Clusters samples using a distance-based method (Ward algorithm)
+
+**PCA Plots**
+   - PCA colored by cluster
+   - Shaped by by metadata factors (e.g., plate, condition, time)
+   - Pontential Outliers highlighthed by Euclidian and Mahnolobis distances
+
+**Enrichment of Principal Components**
+   - Visualizes enrichment of Principal Components
+    
+**Boxplot of Intra and Inter Plate Distances**
+   - Visualizes within-plate vs between-plate variation
+
+**Density Plots of Sample Intensities**
+   - Density distribution of intensities per sample
+   - Potential outliers are identified
+
+**Mean Intensity Density Plot**
+   - Mean density of all samples with potential outliers samples overlaid for better analysis
+
+**Intensity Histogram (Imputed vs Non-Imputed)**
+   - Comparison of the intensity distributions before and after imputation
+
+**Albumin Concentration Plot**
+   - Visualizes albumin concentration per sample
+
+**Protein Rank-Abundance Plot**
+   - Displays proteins ranked by abundance (log-scale)
+
+**Intra-individual CV Scatter Plots**
+   - For all samples and by condition
+
+**Inter-individual CV Scatter Plots**
+   - For all samples and by condition
+
+**Contamination Panel**
+   - Barplot of contaminant proteins
+   - Potential outlier samples highlighted 
+
+**Outlier table**
+   - An overview table of potential outliers and the different analysis they are highlighted
+
+
+## Limitations
 
