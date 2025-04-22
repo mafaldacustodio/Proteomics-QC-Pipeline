@@ -1,4 +1,4 @@
-#This script is an adaption from alphapepsats PCA class
+#This script is an adaption from alphaStats PCA class
 ############################################### IMPORTS ######################################
 import pandas as pd
 import numpy as np
