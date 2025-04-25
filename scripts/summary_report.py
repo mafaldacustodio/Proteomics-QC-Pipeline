@@ -5,10 +5,14 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 import os, glob
+import argparse
 
 #########################################################################################
 # Define input directory containing all QC summary files
-summary_root = "/projects/cbmr_fpm_soup-AUDIT/data/pipeline/data_output/QC/"
+parser = argparse.ArgumentParser()
+parser.add_argument("--output", required=True)
+args = parser.parse_args()
+summary_root = args.output
 workflow_cohort_dirs = glob.glob(os.path.join(summary_root, "*", "summary_data"))
 
 # Create output directory for summary plots and report
