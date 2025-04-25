@@ -9,7 +9,7 @@ This **Snakemake** pipeline allows proteomics researchers to **quantify large-co
 Clone the repository into your server's directory:
 
 ```bash
-git clone --recursive https://github.com/mafaldacustodio/Proteomics-Pipeline.git
+git clone --recursive https://github.com/mafaldacustodio/Proteomics-QC-Pipeline.git
 ```
 
 After cloning, configure your pipeline by editing the configuration file.
