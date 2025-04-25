@@ -104,24 +104,27 @@ rule run_all_QC:
         expand(f"{directory_root}data_output/{{workflow}}_{{cohort}}/{{workflow}}_{{cohort}}_corrected.pg_matrix.tsv",
                workflow=workflows, cohort=cohorts)
     output:
-        marker = f"{directory_root}data_output/B_QC_individual_complete.marker"
+        marker = f"{directory_root}data_output/{qc_version}/B_QC_individual_complete.marker"
     shell:
         "touch {output.marker}"
 
 
+
 rule summarize_qc:
     input:
-        qc_root = f"{directory_root}data_output/QC/"
+        marker = f"{directory_root}data_output/{qc_version}/B_QC_individual_complete.marker"
     output:
-        summary_plots = directory(f"{directory_root}data_output/QC/summary_plots"),
+        directory = directory(f"{directory_root}data_output/{qc_version}"),
         marker = f"{directory_root}data_output/B_QC_summary_complete.marker"
     resources:
         mem_mb=262144,
         slurm_partition="standardqueue"
     shell:
         """
-        uv run {directory_root}scripts/summary_report.py 
+        uv run {directory_root}scripts/summary_report.py --output {output.directory}
         touch {output.marker}
         """
+
+
 
 
