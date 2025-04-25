@@ -70,7 +70,7 @@ Place the following files in the specified directories:
   ```bash
   pipeline/data_input/raw/
   ```
-- **FASTA file**
+- **FASTA file and metadata**
   ```bash
   pipeline/data_input/
   ```
@@ -81,13 +81,14 @@ Place the following files in the specified directories:
 
 ## Usage
 
-To run the full workflow and generate a QC report, execute:
+To run the full workflow and generate a QC report, execute*:
 
 ```bash
 run slurm.sh all_workflow
 ```
-
 This will perform quantification, generate QC plots, and output a full PDF report.
+
+*We recommend the creation of a **tmux session** to run these commands.
 
 ---
 
@@ -96,13 +97,13 @@ This will perform quantification, generate QC plots, and output a full PDF repor
 After analysing the report, you may want to:
 
 #### Apply batch correction
-
+Edit the  **config.yml** file in the batch correction settings and run the following command:
 ```bash
 run slurm.sh batch_correction
 ```
 
 #### Remove identified outlier samples
-
+Edit the  **config.yml** file by adding the samples you want to remove in the "exclude_samples" list and run the following command:
 ```bash
 run slurm.sh remove_samples
 ```
@@ -113,13 +114,14 @@ run slurm.sh remove_samples
 
 The pipeline generates:
 - **Quality Control visualizations in png** 
-- A **comprehensive PDF report** 
+- A **comprehensive individual PDF report**
+- A **summary PDF report** 
 
 ---
 
 ## Overview
 
-This pipeline provides an automated solution for **quantitative proteomics analysis** based on **Data-Independent Acquisition (DIA) mass spectrometry**. The workflow is designed to handle large cohorts and generate both **individual** and **summary quality control reports**, facilitating reproducibility, standardization, and informed decision-making.
+This pipeline provides an automated solution for **quantitative proteomics analysis** based on **Data-Independent Acquisition (DIA) mass spectrometry**. The workflow is designed to handle large cohorts and generate both **individual** and **summary quality control reports**.
 
 
 <img width="848" alt="Screenshot 2025-04-20 at 21 30 15" src="https://github.com/user-attachments/assets/b0bc5efe-4f48-4738-87e5-2d450beba3fe" />
@@ -140,7 +142,7 @@ The QC step generates two types of reports:
 - An **Individual report** for detailed insights of each workflow.
 - A **Summary report** providing a summary of all workflows.
 
-Following QC evaluation, users are given two options:
+Following QC analysis, users are given two options:
 - **Batch Correction**: If batch effects are identified, users can correct the batch effects by updating the configuration file.
 - **Sample Removal**: If outlier samples are detected, users can remove them by adding their sample identifiers to the configuration file.
 
