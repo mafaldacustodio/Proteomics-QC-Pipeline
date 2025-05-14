@@ -84,7 +84,7 @@ Place the following files in the specified directories:
 To run the full workflow and generate a QC report, execute*:
 
 ```bash
-run slurm.sh all_workflow
+bash run_slurm.sh all_workflow
 ```
 This will perform quantification, generate QC plots, and output a full PDF report.
 
@@ -99,13 +99,13 @@ After analysing the report, you may want to:
 #### Apply batch correction
 Edit the  **config.yml** file in the batch correction settings and run the following command:
 ```bash
-run slurm.sh batch_correction
+bash run_slurm.sh batch_correction
 ```
 
 #### Remove identified outlier samples
 Edit the  **config.yml** file by adding the samples you want to remove in the "exclude_samples" list and run the following command:
 ```bash
-run slurm.sh remove_samples
+bash run_slurm.sh remove_samples_QC
 ```
 
 ---
