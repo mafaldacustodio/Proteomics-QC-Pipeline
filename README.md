@@ -99,13 +99,16 @@ After analysing the report, you may want to:
 #### Apply batch correction
 Edit the  **config.yml** file in the batch correction settings and run the following command:
 ```bash
-bash run_slurm.sh batch_correction
+bash run_slurm.sh run_all_QC 
+bash run_slurm.sh summarize_qc
 ```
 
 #### Remove identified outlier samples
 Edit the  **config.yml** file by adding the samples you want to remove in the "exclude_samples" list and run the following command:
 ```bash
-bash run_slurm.sh remove_samples_QC
+bash run_slurm.sh remove_all_samples 
+bash run_slurm.sh run_all_QC 
+bash run_slurm.sh summarize_qc
 ```
 
 ---
