@@ -93,8 +93,6 @@ rule diann_analysis_cohorts_removed:
               --missed-cleavages 1
         """
 
-
-
 rule A_quantify_all:
     input:
         # Workflow-level DIANN results
@@ -113,6 +111,6 @@ rule remove_all_samples:
         f"{directory_root}data_input/converted_files/.removed_excluded",
         f"{directory_root}data_input/converted_files",
         expand(f"{directory_root}data_output/removed_samples_data/{{workflow}}/{{workflow}}.stats.tsv",workflow=workflows),
-        expand(f"{directory_root}data_output/removed_samples_data/{{workflow}}_{{cohort}}/{{workflow}}_{{cohort}}.stats.tsv",workflow=workflows, cohor
-t=sorted(metadata["cohort"].unique())),
+        expand(f"{directory_root}data_output/removed_samples_data/{{workflow}}_{{cohort}}/{{workflow}}_{{cohort}}.stats.tsv",workflow=workflows, cohort=sorted(metadata["cohort"].unique())),
         f"{directory_root}data_output/A_all_diann_removed_complete.marker"
+
