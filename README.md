@@ -80,15 +80,17 @@ Place the following files in the specified directories:
 ---
 
 ## Usage
+We recommend the creation of a **tmux session** to run these commands.
+```bash
+tmux
+```
 
-To run the full workflow and generate a QC report, execute*:
+To run the full workflow and generate a QC report, execute:
 
 ```bash
 bash run_slurm.sh all_workflow
 ```
 This will perform quantification, generate QC plots, and output a full PDF report.
-
-*We recommend the creation of a **tmux session** to run these commands.
 
 ---
 
