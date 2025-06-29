@@ -92,7 +92,9 @@ tmux
 To run the full workflow and generate a QC report, execute:
 
 ```bash
-bash run_slurm.sh all_workflow
+bash run_slurm.sh convert_all
+bash run_slurm.sh A_all
+bash run_slurm.sh summarize_qc
 ```
 This will perform quantification, generate QC plots, and output a full PDF report.
 
@@ -105,7 +107,6 @@ After analysing the report, you may want to:
 #### Apply batch correction
 Edit the  **config.yml** file in the batch correction settings and run the following command:
 ```bash
-bash run_slurm.sh run_all_QC 
 bash run_slurm.sh summarize_qc
 ```
 
@@ -113,7 +114,6 @@ bash run_slurm.sh summarize_qc
 Edit the  **config.yml** file by adding the samples you want to remove in the "exclude_samples" list and run the following command:
 ```bash
 bash run_slurm.sh remove_all_samples 
-bash run_slurm.sh run_all_QC 
 bash run_slurm.sh summarize_qc
 ```
 
