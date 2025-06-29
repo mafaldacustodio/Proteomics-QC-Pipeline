@@ -38,7 +38,6 @@ rule generate_spectral_library:
               --threads {threads}
         """
 
-
 # Rule: Convert Raw Files to mzML
 rule convert_raw_files:
     input:
@@ -132,46 +131,14 @@ rule diann_analysis_cohorts:
               --missed-cleavages 1
         """
 
-# Rule: All
-# We combine targets from both analysis types.
 rule A_all:
     input:
         # Workflow-level DIANN results
         expand(f"{directory_root}data_output/{{workflow}}/{{workflow}}.stats.tsv", workflow=workflows),
         # Cohort-level DIANN results: for each row in metadata, construct a target path for that workflow/cohort
-        expand(f"{directory_root}data_output/{{workflow}}_{{cohort}}/{{workflow}}_{{cohort}}.stats.tsv", 
+        expand(f"{directory_root}data_output/{{workflow}}_{{cohort}}/{{workflow}}_{{cohort}}.stats.tsv",
                workflow=workflows, cohort=sorted(metadata["cohort"].unique()))
     output:
-        marker = f"{directory_root}data_output/A_all_complete.marker"
+        marker = f"{directory_root}data_output/A_all_diann_complete.marker"
     shell:
         "touch {output.marker}"
-
-
-rule remove_excluded_samples:
-    input:
-        indir = f"{directory_root}data_input/converted_files"
-    output:
-        marker = f"{directory_root}data_input/converted_files/.removed_excluded"
-    params:
-        exclude = ",".join(config["exclude_samples"])
-    shell:
-        """
-        python {directory_root}scripts/remove_samples.py --indir {input.indir} --exclude {params.exclude}
-        touch {output.marker}
-        """
-
-rule A_all_filtered:
-    input:
-        f"{directory_root}data_input/converted_files/.removed_excluded",
-        # Workflow-level DIANN results
-        expand(f"{directory_root}data_output/{{workflow}}/{{workflow}}.stats.tsv", workflow=workflows),
-        # Cohort-level DIANN results: for each row in metadata, construct a target path for that workflow/cohort
-        expand(f"{directory_root}data_output/{{workflow}}_{{cohort}}/{{workflow}}_{{cohort}}.stats.tsv", 
-               workflow=workflows, cohort=sorted(metadata["cohort"].unique()))
-    output:
-        marker_out = f"{directory_root}data_output/A_all_filtered_complete.marker"
-    shell:
-        "touch {output.marker_out}"
-
-
-
