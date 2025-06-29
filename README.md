@@ -70,6 +70,10 @@ Place the following files in the specified directories:
   ```bash
   pipeline/data_input/raw/
   ```
+Use the following command:  
+  ```bash
+  scp -r {directory}/raw wqs176@esrumhead01fl.unicph.domain:/projects/cbmr_fpm_soup-AUDIT/data/pipeline/data_input/raw/
+  ```
 - **FASTA file and metadata**
   ```bash
   pipeline/data_input/
@@ -122,6 +126,10 @@ The pipeline generates:
 - A **comprehensive individual PDF report**
 - A **summary PDF report** 
 
+To download the files use:
+```bash
+scp -r kuxxx@esrumhead01fl.unicph.domain:/{directory}/pipeline/data_output/{QC_remove_samples_and_batch_effect/}/ ~/{directory}/
+```
 ---
 
 ## Overview
