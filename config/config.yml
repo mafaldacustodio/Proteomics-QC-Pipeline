@@ -18,6 +18,8 @@ group: None
 #Filtering percentage - default 20%
 filtering_percentage: 0.20
 
+batch_column: "plate"
+
 # Metadata column for grouping in missing value analysis
 missing_values_grouping: 'condition'
 
