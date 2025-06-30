@@ -29,6 +29,7 @@ rule setup_env:
         env_flag=f"{directory_root} .env_setup"
     shell:
         """
+        curl -LsSf https://astral.sh/uv/install.sh | sh
         module purge
         uv venv --python 3.9
         uv pip install venn
