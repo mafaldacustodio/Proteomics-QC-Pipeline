@@ -74,7 +74,7 @@ rule convert_all:
 # This runs DIANN on all converted files for a workflow, regardless of cohort (using --dir-all).
 rule diann_analysis_workflows:
     input:
-        library = f"{directory_root}data_output/library.predicted.speclib",
+        library = f"{directory_root}data_output/library.predicted.predicted.speclib",
         raw_data_dir = f"{directory_root}data_input/converted_files/{{workflow}}"
     output:
         results = f"{directory_root}data_output/{{workflow}}/{{workflow}}.stats.tsv"
@@ -105,7 +105,7 @@ rule diann_analysis_workflows:
 
 rule diann_analysis_cohorts:
     input:
-        library = f"{directory_root}data_output/library.predicted.speclib",
+        library = f"{directory_root}data_output/library.predicted.predicted.speclib",
         raw_data_dir = f"{directory_root}data_input/converted_files/{{workflow}}/{{cohort}}"
     output:
         results = f"{directory_root}data_output/{{workflow}}_{{cohort}}/{{workflow}}_{{cohort}}.stats.tsv"
