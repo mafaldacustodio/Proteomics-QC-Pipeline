@@ -41,6 +41,7 @@ rule setup_env:
 rule run_alphastats_analysis_workflow:
     input:
         matrix= f"{data_dir}{{workflow}}/{{workflow}}.pg_matrix.tsv"
+        marker=f"{directory_root} .env_setup"
     output:
         new_matrix=f"{data_dir}{{workflow}}/{{workflow}}_corrected.pg_matrix.tsv",
         output_dir = directory(f"{directory_root}data_output/{qc_version}/{{workflow}}"),
@@ -72,6 +73,7 @@ rule run_alphastats_analysis_workflow:
 rule run_alphastats_analysis_cohort:
     input:
         matrix=f"{data_dir}{{workflow}}_{{cohort}}/{{workflow}}_{{cohort}}.pg_matrix.tsv"
+        marker=f"{directory_root} .env_setup"
     output:
         new_matrix=f"{data_dir}{{workflow}}_{{cohort}}/{{workflow}}_{{cohort}}_corrected.pg_matrix.tsv",
         output_dir = directory(f"{directory_root}data_output/{qc_version}/{{workflow}}_{{cohort}}"),
